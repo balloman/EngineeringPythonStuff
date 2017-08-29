@@ -67,7 +67,7 @@ def input_variables():
     libs.insert(14, number)
     libs.insert(15, name)
     libs.insert(16, superhero)
-    libs.insert(17, superhero)
+    libs.insert(17, superhero.capitalize())
     libs.insert(18, name)
     libs.insert(19, country)
     libs.insert(20, name)
