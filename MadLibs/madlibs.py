@@ -2,26 +2,28 @@
 
 # Here you actually have to replace %s with {} because we are using Python 3
 STORY = ("This morning I woke up and felt {} because {} was going"
-         " to finally {} over the big {}{}. On the other side of the {}"
-         " were many {} protesting to keep {} in stores. The crowd bega"
-         "n to {} to the rhythm of the {}, which made all of the {} ver"
+         " to finally {} over the big {} {}. On the other side of the {}"
+         " were many {}s protesting to keep {} in stores. The crowd bega"
+         "n to {} to the rhythm of the {}, which made all of the {}s ver"
          "y {}. {} tried to {} into the sewers and found {} rats. Needi"
          "ng help, {} quickly called {}. {} appeared and saved {} by fly"
          "ing to {} and dropping {} into a puddle of {}. {} then fell "
-         "asleep and woke up in the year {}, in a world where {} ruled "
+         "asleep and woke up in the year {}, in a world where {}s ruled "
          "the world.")
 
 
-# Define our welcome stuff and add anymore welcomes you would have
+
 def welcome():
+    """ Define our welcome stuff and add anymore welcomes you would have"""
     print("Welcome to the Mad Libs game!")
     print("I'm your host, killer keemstar, and let's get riiiiiiiiii" +
           "iiiiiiiiiiiight into the libs!")
 
 
-""" This function is for our input variables, and having it in a function 
-    can be a bit more aesthetically pleasing"""
+
 def input_variables():
+    """ This function is for our input variables, and having it in a function 
+    can be a bit more aesthetically pleasing"""
     # Surprise! It's arrays again, lol
     libs = []
     name = input("Enter a name here!")
