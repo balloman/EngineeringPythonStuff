@@ -1,8 +1,8 @@
 """This program is basically an madlibs game, nothing more and nothing less."""
 
-# Here you actually have to replace %s with {} because we are using python 3
+# Here you actually have to replace %s with {} because we are using Python 3
 STORY = ("This morning I woke up and felt {} because {} was going"
-         " to finally {} over the big {}. On the other side of the {}"
+         " to finally {} over the big {}{}. On the other side of the {}"
          " were many {} protesting to keep {} in stores. The crowd bega"
          "n to {} to the rhythm of the {}, which made all of the {} ver"
          "y {}. {} tried to {} into the sewers and found {} rats. Needi"
