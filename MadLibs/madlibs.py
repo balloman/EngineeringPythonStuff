@@ -12,17 +12,19 @@ STORY = ("This morning I woke up and felt {} because {} was going"
          "the world.")
 
 
+# Define our welcome stuff and add anymore welcomes you would have
 def welcome():
     print("Welcome to the Mad Libs game!")
     print("I'm your host, killer keemstar, and let's get riiiiiiiiii" +
           "iiiiiiiiiiiight into the libs!")
 
 
+""" This function is for our input variables, and having it in a function 
+    can be a bit more aesthetically pleasing"""
 def input_variables():
     # Surprise! It's arrays again, lol
     libs = []
     name = input("Enter a name here!")
-    # I am currently inserting the values into the array here
     print("Enter three adjectives, separated by the enter key.")
     adj1 = input("Adjective 1: ")
     adj2 = input("Adjective 2: ")
@@ -45,6 +47,7 @@ def input_variables():
     country = input("Country: ")
     dessert = input("Dessert: ")
     year = input("Year: ")
+    # I am currently inserting the values into the array here
     libs.insert(0, adj1)
     libs.insert(1, name)
     libs.insert(2, verb1)
@@ -73,8 +76,15 @@ def input_variables():
     return libs
 
 
+# Run the welcome function here
+welcome()
+
+""" Set the value of a new variable known as "libs" equal to the value that is
+    returned from the input_variables function"""
 libs = input_variables()
 
+""" Notice how it looks better if I instead just use the index of whatever thing
+    I need"""
 # Switch the percent for a simple .format and it works beautifully!
 print(STORY.format(libs[0], libs[1], libs[2], libs[3], libs[4], libs[5],
                    libs[6], libs[7], libs[8], libs[9], libs[10], libs[11],
