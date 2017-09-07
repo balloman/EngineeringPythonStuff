@@ -21,6 +21,7 @@ def welcome():
 
 
 
+
 def input_variables():
     """ This function is for our input variables, and having it in a function
     can be a bit more aesthetically pleasing"""
