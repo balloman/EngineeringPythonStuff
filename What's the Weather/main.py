@@ -6,4 +6,5 @@ url = urlopen('http://api.openweathermap.org/data/2.5/forecast/daily?zip=35613,u
 
 five_day = json.loads(url)
 
-print five_day
+for item in five_day['list']['weather']['main']:
+    print item
