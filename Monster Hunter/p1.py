@@ -2,10 +2,11 @@ from random import randint
 from time import sleep
 
 class Character:
-    def __init__(self, cname, chealth, cdamage):
+    def __init__(self, cname, chealth, cdamage, weapon_damage):
         self.health = chealth
         self.damage = cdamage
         self.name = cname
+        self.weapon_damage = weapon_damage
     def damagecalc(self, cdamage):
         return randint(self.damage[0], self.damage[1])
 
@@ -16,11 +17,19 @@ class Weapon:
         self.damage = cdamage
         
 
-monsterlist = [Character("Goblin", 10, (0,3)), Character("Ghost", 15, (0,5)), Character("Dragon", 20, (0,7)), Character("Player", 10, (0,1))]
+monsterlist = [Character("Goblin", 10, (0,3), {"Sword" : (5, 3), "Bow" : (3, 5), "Magic" : (1, 1)}),
+               Character("Ghost", 15, (0,5), {"Sword" : (3, 5), "Bow" : (1, 1), "Magic" : (5,3)}), 
+               Character("Dragon", 20, (0,7), {"Sword" : (1,1), "Bow" : (3,5), "Magic" : (5,3)}), 
+               Character("Player", 10, (0,1))]
 
 weapons = ["Bow", "Sword", "Magic"]
 
-# TODO : Create a function that calculates the amount of damage a player will do to a monster. Its parameters should be the monster, the weapon, and the target and it should return the amount of damage the player will do. You may create additional functions to break up the logic if you wish.
+""" TODO : Create a function that calculates the amount of damage a player will do to a monster. Its parameters should be the monster, the weapon, 
+ and the target and it should return the amount of damage the player will do. You may create additional functions to break up the logic if you wish."""
+
+def damagecalc(weapon, location):
+    
+
 
 # TODO : Create a function that calculates the amount of damage a monster will do to the player. It should take in a monster as a parameter and return the amount of health it starts with.
 
