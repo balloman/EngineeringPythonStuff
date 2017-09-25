@@ -1,4 +1,5 @@
 from random import randint
+from time import sleep
 
 class Character:
     def __init__(self, cname, chealth, cdamage):
@@ -15,7 +16,9 @@ class Weapon:
         self.damage = cdamage
         
 
-monster = [Character("Goblin", 10, (0,3)), Character("Ghost", 15, (0,5)), Character("Dragon", 20, (0,7)), Character("Player", 10, (0,1))]
+monsterlist = [Character("Goblin", 10, (0,3)), Character("Ghost", 15, (0,5)), Character("Dragon", 20, (0,7)), Character("Player", 10, (0,1))]
+
+weapons = ["Bow", "Sword", "Magic"]
 
 # TODO : Create a function that calculates the amount of damage a player will do to a monster. Its parameters should be the monster, the weapon, and the target and it should return the amount of damage the player will do. You may create additional functions to break up the logic if you wish.
 
@@ -23,34 +26,39 @@ monster = [Character("Goblin", 10, (0,3)), Character("Ghost", 15, (0,5)), Charac
 
 def main():
     # TODO : Randomly pick which monster the player will face this game. Set the result equal to the variable 'monster'.
-    monster
+    monster = monsterlist[randint(0,2)]
 
-    print "A " + str(monster) + " has appeared before you! It looks angry."
+    print "A " + monster.name + " has appeared before you! It looks angry."
 
     choice = None
     while (choice is None):
-        # TODO : Ask the player what they want to do. Their options are 'fight' and 'run'. Set the player's choice equal to the variable 'choice'.
+
+        choice = raw_input("You can either fight or run. What do you do? >>> ")
 
         if choice not in ["fight", "run"]:
             print "I didn't understand that..."
             choice = None
 
-    # TODO : Exit the program if the player chose to run away. Otherwise, wish them luck in their fight.
+    if 'u' in choice:
+        exit()
+    else:
+        print ("Good Luck")
+        sleep(2)
 
-    # TODO : Set the monster's starting health by calling your function
-
-    # TODO : Set the player's starting health to 10
+    player = monsterlist[3]
 
     # Turn iterator
-    while monster_health > 0 and player_health > 0:
+    while monster.health > 0 and player.health > 0:
         weapon = None
         while (weapon is None):
-            # TODO : Ask the player what weapon they will use to attack the monster. Their options are 'sword', 'bow', and 'magic'. Set the player's choice equal to the variable 'weapon'.
+
+            weapon = raw_input("Bow, Magic, or Sword? >>>")
+            
             if weapon not in weapons:
                 print "I didn't understand that..."
                 weapon = None
 
-        # TODO : Randomly pick where the player will attack the monster. Set the result equal to the variable 'target'.
+        location = randint(1, 3)
 
         # TODO : Set the amount of damage the player will deal to the monster by calling your function
 
