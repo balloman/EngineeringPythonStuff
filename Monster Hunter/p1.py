@@ -1,4 +1,5 @@
 from random import randint
+from random import choice as rchoice
 from time import sleep
 
 class Character:
@@ -7,9 +8,27 @@ class Character:
         self.damage = cdamage
         self.name = cname
         self.weapon_damage = weapon_damage
-    def damagecalc(self, cdamage):
+
+    def damageToMonster(self, weapon):
+        location = None
+        head = 0
+        body = 1
+        seed = randint(1, 3)
+        if seed == 1:
+            location = head
+        elif seed == 2:
+            location = body
+        else:
+            location = 2
+        if location != 2:
+            return self.weapon_damage[weapon][location]
+        else:
+            return randint(0, 5)
+
+    def damageToHero(self):
         return randint(self.damage[0], self.damage[1])
 
+    
 class Weapon:
 
     def __init__(self, cname, cdamage):
@@ -19,28 +38,20 @@ class Weapon:
 
 monsterlist = [Character("Goblin", 10, (0,3), {"Sword" : (5, 3), "Bow" : (3, 5), "Magic" : (1, 1)}),
                Character("Ghost", 15, (0,5), {"Sword" : (3, 5), "Bow" : (1, 1), "Magic" : (5,3)}), 
-               Character("Dragon", 20, (0,7), {"Sword" : (1,1), "Bow" : (3,5), "Magic" : (5,3)}), 
-               Character("Player", 10, (0,1))]
+               Character("Dragon", 20, (0,7), {"Sword" : (1,1), "Bow" : (3,5), "Magic" : (5,3)}),]
 
 weapons = ["Bow", "Sword", "Magic"]
 
-""" TODO : Create a function that calculates the amount of damage a player will do to a monster. Its parameters should be the monster, the weapon, 
- and the target and it should return the amount of damage the player will do. You may create additional functions to break up the logic if you wish."""
-
-def damagecalc(weapon, location):
-    
-
-
-# TODO : Create a function that calculates the amount of damage a monster will do to the player. It should take in a monster as a parameter and return the amount of health it starts with.
 
 def main():
-    # TODO : Randomly pick which monster the player will face this game. Set the result equal to the variable 'monster'.
-    monster = monsterlist[randint(0,2)]
+    """The main program"""
+    player = Character(raw_input("What is your name warrior? >>>"), 10, None, None)
+    monster = rchoice(monsterlist)
 
     print "A " + monster.name + " has appeared before you! It looks angry."
 
     choice = None
-    while (choice is None):
+    while choice is None:
 
         choice = raw_input("You can either fight or run. What do you do? >>> ")
 
@@ -51,7 +62,7 @@ def main():
     if 'u' in choice:
         exit()
     else:
-        print ("Good Luck")
+        print "Good Luck"
         sleep(2)
 
     player = monsterlist[3]
@@ -59,26 +70,25 @@ def main():
     # Turn iterator
     while monster.health > 0 and player.health > 0:
         weapon = None
-        while (weapon is None):
+        while weapon is None:
 
             weapon = raw_input("Bow, Magic, or Sword? >>>")
-            
+
             if weapon not in weapons:
                 print "I didn't understand that..."
                 weapon = None
 
-        location = randint(1, 3)
+        monster.health = monster.health - monster.damageToMonster(weapon)
 
-        # TODO : Set the amount of damage the player will deal to the monster by calling your function
+        player.health = player.health - monster.damageToHero()
 
-        # TODO : Deal damage to the monster.
-
-        # TODO : If the monster is still alive, set the amount of damage the monster will deal to the player by calling your function
-
-        # TODO : Deal damage to the player.
 
         # TODO : Inform the player of their health and the monster's health at the end of every turn
+        print "Your health is %d, and the monster's health is %d" % (player.health, monster.health)
 
-    # TODO : Display either a game over or victory message once either the player or the monster has run out of health
+    if player.health > 0:
+        print "You Won!"
+    else:
+        print "You Died!"
 
 main()
