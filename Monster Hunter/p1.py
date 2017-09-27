@@ -1,6 +1,7 @@
 from random import randint
 from random import choice as rchoice
 from time import sleep
+import simplejson
 
 class Character:
     """Class for the characters in the game"""
@@ -47,6 +48,7 @@ monsterlist = [Character("Goblin", 10, (0,3), {"Sword" : (5, 3), "Bow" : (3, 5),
 
 weapons = ["Bow", "Sword", "Magic"]
 
+f = open('xp.mh', 'r+')
 def loading():
     """Creates a loading string for the game"""
     for i in ('.', '.', '.'):
@@ -112,6 +114,7 @@ def main():
         loading()
         sleep(3)
         print "You Won!"
+        f.write()
     else:
         print "You Died!"
 
