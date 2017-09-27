@@ -71,8 +71,6 @@ def main():
         print "Good Luck %s." % player.name
         sleep(2)
 
-    player = monsterlist[3]
-
     # Turn iterator
     while monster.health > 0 and player.health > 0:
         weapon = None
