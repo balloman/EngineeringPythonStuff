@@ -22,9 +22,14 @@ class Character:
         else:
             location = 2
         if location != 2:
+            locationstr = None
+            if location == 0:
+                locationstr = "in the head"
+            elif location == 1:
+                locationstr = "in the body"
             return self.weapon_damage[weapon][location]
         else:
-            return randint(0, 5)
+            return [randint(0, 5), "a random area"]
 
     def damageToHero(self):
         return randint(self.damage[0], self.damage[1])
@@ -48,6 +53,7 @@ def loading():
         sleep(0.5)
         print i,
         sleep(0.5)
+    print ""
 
 def main():
     """The main program"""
@@ -83,12 +89,13 @@ def main():
                 weapon = None
 
         dth = monster.damageToHero()
-        dtm = monster.damageToMonster()
+        dtm = monster.damageToMonster(weapon)
 
         monster.health = monster.health - dtm
         player.health = player.health - dth
 
-        print "You did %d damage to the monster" % dtm
+        #print "You blow hits the %s in %s." % (monster.name, dtm)
+        print "You did %d damage to the monster." % dtm
 
         if monster.health < 0:
             break
@@ -99,10 +106,14 @@ def main():
             print "The monster did %d damage to you." % dth
 
         print "Your health is %d, and the monster's health is %d" % (player.health, monster.health)
+        sleep(1)
 
     if player.health > 0:
+        loading()
+        sleep(3)
         print "You Won!"
     else:
         print "You Died!"
 
 main()
+raw_input("Press enter to exit...")
