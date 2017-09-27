@@ -3,6 +3,7 @@ from random import choice as rchoice
 from time import sleep
 
 class Character:
+    """Class for the characters in the game"""
     def __init__(self, cname, chealth, cdamage, weapon_damage):
         self.health = chealth
         self.damage = cdamage
@@ -30,11 +31,10 @@ class Character:
 
     
 class Weapon:
-
+    """Class that gives the weapons damage"""
     def __init__(self, cname, cdamage):
         self.name = cname
         self.damage = cdamage
-        
 
 monsterlist = [Character("Goblin", 10, (0,3), {"Sword" : (5, 3), "Bow" : (3, 5), "Magic" : (1, 1)}),
                Character("Ghost", 15, (0,5), {"Sword" : (3, 5), "Bow" : (1, 1), "Magic" : (5,3)}), 
@@ -42,6 +42,12 @@ monsterlist = [Character("Goblin", 10, (0,3), {"Sword" : (5, 3), "Bow" : (3, 5),
 
 weapons = ["Bow", "Sword", "Magic"]
 
+def loading():
+    """Creates a loading string for the game"""
+    for i in ('.', '.', '.'):
+        sleep(0.5)
+        print i,
+        sleep(0.5)
 
 def main():
     """The main program"""
@@ -62,7 +68,7 @@ def main():
     if 'u' in choice:
         exit()
     else:
-        print "Good Luck"
+        print "Good Luck %s." % player.name
         sleep(2)
 
     player = monsterlist[3]
@@ -78,12 +84,22 @@ def main():
                 print "I didn't understand that..."
                 weapon = None
 
-        monster.health = monster.health - monster.damageToMonster(weapon)
+        dth = monster.damageToHero()
+        dtm = monster.damageToMonster()
 
-        player.health = player.health - monster.damageToHero()
+        monster.health = monster.health - dtm
+        player.health = player.health - dth
 
+        print "You did %d damage to the monster" % dtm
 
-        # TODO : Inform the player of their health and the monster's health at the end of every turn
+        if monster.health < 0:
+            break
+        else:
+            sleep(0.5)
+            print "You were unable to kill the monster, and it attacks you!"
+            loading()
+            print "The monster did %d damage to you." % dth
+
         print "Your health is %d, and the monster's health is %d" % (player.health, monster.health)
 
     if player.health > 0:
