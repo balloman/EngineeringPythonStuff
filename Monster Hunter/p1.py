@@ -27,7 +27,7 @@ class Character:
                 locationstr = "in the head"
             elif location == 1:
                 locationstr = "in the body"
-            return self.weapon_damage[weapon][location]
+            return [self.weapon_damage[weapon][location], locationstr]
         else:
             return [randint(0, 5), "a random area"]
 
@@ -91,11 +91,11 @@ def main():
         dth = monster.damageToHero()
         dtm = monster.damageToMonster(weapon)
 
-        monster.health = monster.health - dtm
+        monster.health = monster.health - dtm[0]
         player.health = player.health - dth
 
-        #print "You blow hits the %s in %s." % (monster.name, dtm)
-        print "You did %d damage to the monster." % dtm
+        print "You blow hits the %s in %s." % (monster.name, dtm[1])
+        print "You did %d damage to the monster." % dtm[0]
 
         if monster.health < 0:
             break
@@ -108,7 +108,7 @@ def main():
         print "Your health is %d, and the monster's health is %d" % (player.health, monster.health)
         sleep(1)
 
-    if player.health > 0:
+    if monster.health <= 0:
         loading()
         sleep(3)
         print "You Won!"
