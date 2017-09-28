@@ -101,7 +101,11 @@ def main(fplayer):
 
         dth = monster.damageToHero()
         dtm = monster.damageToMonster(weapon)
-
+        chance = randint(0, 100)
+        if chance < 15:
+            dtm[0] = float(dtm[0]) * 1.5
+            dtm[0] = round(dtm)
+            print "Critical Strike!"
         monster.health = monster.health - dtm[0]
         fplayer.health = fplayer.health - dth
 
@@ -138,12 +142,20 @@ def xpReq(level):
     
 player = Character(raw_input("What is your name warrior? >>>"), 10, None, None)
 level = 0
+i = 0
 while True:
-    i = 0
-    if xpReq(i) < data[player.name]:
-        continue
-    else:
-        level = i
+    
+    try:
+        if xpReq(i) < data[player.name]:
+            print i
+            print "Loop"
+        else:
+            level = i
+            break
+    except KeyError:
+        print "KeyError"
+        data[player.name] = 1
+        i -= 1
     i += 1
 
 monstercount = level
