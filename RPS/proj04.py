@@ -11,6 +11,12 @@ playerchoices = []
 games = [0, 0, 0, 0]
 
 
+def listHistory(fGames):
+    print "After playing %d time(s). I won %d time(s), You won %d time(s), and we tied %d times" % (
+          fGames[3], fGames[1], fGames[0], fGames[2])
+    print valuesPicked(playerchoices)
+
+
 def valuesPicked(lst):
     """Returns the gamedata at the end of the game by counting the occurence of each move in the list of moves"""
     rock = lst.count(moves[0])
@@ -26,20 +32,28 @@ def most_common(lst):
 
 def grabPlayer(fPlayerChoices, fGames):
     """Gets the player's decision and returns what they chose. Also handles quit"""
-    print "Choose Rock, Paper, or Scissors"
-    choice = raw_input(">>> ")
-    if 'q' in choice.lower():
-        # Multiline statement that prints quit info
-        print "After playing %d time(s). I won %d time(s), You won %d time(s), and we tied %d times" % (
-            fGames[3], fGames[1], fGames[0], fGames[2])
-        print valuesPicked(playerchoices)
-        sys.exit(0)
-    for i in moves:
-        if choice.lower() in i.lower():
-            # Adds player choice to list of choices for move calculation
-            fPlayerChoices.append(i)
-            return i
-    print "I didnt understand that..."
+    choice = None
+    while choice == None:
+      print "Choose Rock, Paper, or Scissors"
+      choice = raw_input(">>> ")
+      if 'q' in choice.lower():
+          # Multiline statement that prints quit info
+          print "After playing %d time(s). I won %d time(s), You won %d time(s), and we tied %d times" % (
+              fGames[3], fGames[1], fGames[0], fGames[2])
+          print valuesPicked(playerchoices)
+          sys.exit(0)
+      elif choice.lower() in 'history':
+          listHistory(fGames)
+          choice = None
+          continue
+          
+      for i in moves:
+          if choice.lower() in i.lower():
+              # Adds player choice to list of choices for move calculation
+              fPlayerChoices.append(i)
+              return i
+      print "I didnt understand that..."
+      choice = None
 
 
 def bestMove(fPlayerChoices):
