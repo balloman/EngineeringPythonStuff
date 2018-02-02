@@ -1,7 +1,6 @@
 import sys
 from random import randint
 
-# This is a dictionary of what beats what in Rock, Paper, Scissors
 beat = {"Rock": "Paper", "Paper": "Scissors", "Scissors": "Rock"}
 moves = ["Rock", "Paper", "Scissors"]
 # Empty list that will soon hold all of the player choices
