@@ -10,22 +10,23 @@ playerchoices = []
 # [Number of times human has won, number of times pc has won, number of ties, number of games]
 games = [0, 0, 0, 0]
 
+
 def listHistory(fGames):
     print "After playing %d time(s). I won %d time(s), You won %d time(s), and we tied %d times" % (
           fGames[3], fGames[1], fGames[0], fGames[2])
     print valuesPicked(playerchoices)
 
+    
 def valuesPicked(lst):
     """Returns the gamedata at the end of the game by counting the occurence of each move in the list of moves"""
-    rock = lst.count(moves[0])
-    paper = lst.count(moves[1])
-    scissors = lst.count(moves[2])
-    return "You chose rock %d time(s), paper %d time(s), and scissors %d time(s)" % (rock, paper, scissors)
+    return "You chose rock %d time(s), paper %d time(s), and scissors %d time(s)" % (lst.count(moves[0]), lst.count(moves[1]), lst.count(moves[2])
 
+                                                                                     
 def most_common(lst):
     """Function I found on the internet to return the most common element in a list"""
     return max(set(lst), key=lst.count)
 
+                                                                                     
 def grabPlayer(fPlayerChoices, fGames):
     """Gets the player's decision and returns what they chose. Also handles quit"""
     choice = None
@@ -51,6 +52,7 @@ def grabPlayer(fPlayerChoices, fGames):
       print "I didnt understand that..."
       choice = None
 
+                                                                                     
 def bestMove(fPlayerChoices):
     """Calculates the best move based on the most common user choices"""
     ''' try except case is because the most_common function fails if there are multiple common values 
@@ -62,6 +64,7 @@ def bestMove(fPlayerChoices):
     except Exception:
         return moves[randint(0, 2)]
 
+                                                                                     
 def gamePlay(calcChoice, playerChoice, fGames):
     """Handles the output of the game once calculated"""
     print "I chose %s" % calcChoice
@@ -78,10 +81,12 @@ def gamePlay(calcChoice, playerChoice, fGames):
         fGames[2] += 1
         return "Tie...:/"
 
+                                                                                     
 def main(beat, moves, playerchoices, games):
     """Throw the thing in main so that I can run it multiple times"""
     print gamePlay(bestMove(playerchoices), grabPlayer(playerchoices, games), games)
 
+                                                                                     
 print "Hello, welcome to Rock, Paper Scissors."
 while True:
     # Proceed to run it multiple times
