@@ -1,6 +1,7 @@
 import sys
 from random import randint
 
+# aDDED A COMMENT
 beat = {"Rock": "Paper", "Paper": "Scissors", "Scissors": "Rock"}
 moves = ["Rock", "Paper", "Scissors"]
 # Empty list that will soon hold all of the player choices
