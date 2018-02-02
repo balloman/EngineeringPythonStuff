@@ -23,7 +23,7 @@ def grabPlayer(fPlayerChoices, fStatus, fGames):
     print "Choose Rock, Paper, or Scissors"
     choice = raw_input(">>> ")
     if 'q' in choice.lower():
-        print "After playing %d. I won %d time(s), You won %d time(s), and we tied %d times" % (fGames[3], fGames[1], fGames[0], fGames[2])
+        print "After playing %d time(s). I won %d time(s), You won %d time(s), and we tied %d times" % (fGames[3], fGames[1], fGames[0], fGames[2])
         print valuesPicked(playerchoices)
         sys.exit(0)
     for i in moves:
@@ -60,5 +60,6 @@ def main(beat, moves, playerchoices, games, status):
 print "Hello, welcome to Rock, Paper Scissors."
 while True:
     main(beat, moves, playerchoices, games, status)
+    games[3] += 1
 
 
